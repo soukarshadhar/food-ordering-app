@@ -6,14 +6,19 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Restaurant from "./components/Restaurant";
+import NetworkConnectionBanner from "./components/NetworkConnectionBanner";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { OnlineStatusProvider } from "./hooks/useOnlineStatus";
 
 const AppLayout = () => {
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <OnlineStatusProvider>
+      <div className="app">
+        <NetworkConnectionBanner />
+        <Header />
+        <Outlet />
+      </div>
+    </OnlineStatusProvider>
   );
 };
 

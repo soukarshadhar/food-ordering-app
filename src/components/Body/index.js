@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import RestaurantCard from "../RestaurantCard";
 import Shimmer from "../Shimmer";
 import { RESTAURANTS_URL, CORS_PROXY_URL } from "../../utils/constants";
+import useOnlineStatus from "../../hooks/useOnlineStatus";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const isOnline = useOnlineStatus();
 
   const handleOnFilterClick = () => {
     const list = restaurantList.filter((i) => i.info.avgRating > 4);
@@ -46,7 +48,11 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurantList.map((restaurant) =>
-          <RestaurantCard restaurant={restaurant} key={restaurant.info.id}/>
+          <RestaurantCard
+            restaurant={restaurant} 
+            key={restaurant.info.id} 
+            isOnline={isOnline} 
+          />
         )}
       </div>
     </div>;

@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from 'react-router-dom';
-import { RESTAURANT_MENU_URL, CORS_PROXY_URL } from "../../utils/constants";
+import useGetRestaurantById from "../../hooks/useGetRestaurantById";
 
 const Restaurant = () => {
-  const [menu, setMenu] = useState([]);
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
   const { id } = useParams();
+  const { menu, info, loading } = useGetRestaurantById(id);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  if (loading) return <h1>Loading...</h1>;
 
-  const fetchData = async () => {
-    const data = await fetch(`${CORS_PROXY_URL}${RESTAURANT_MENU_URL}${id}`);
-    const response = await data.json();
-    const regularCards = response.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
-    const resInfo = response.data.cards[2].card.card.info;
-    const recommendedMenu = regularCards.find((item) => item.card?.card?.type === "CATEGORY_TYPE_RECOMMENDED");
-    const list = recommendedMenu?.card?.card?.itemCards;
-    setRestaurantInfo(resInfo);
-    if (list) setMenu(list);
-  }
-
-  if (!restaurantInfo && menu.length === 0) return <h1>Loading...</h1>;
-
-  const {name, areaName, city, cuisines, costForTwoMessage} = restaurantInfo;
+  const {
+    name = "",
+    areaName = "",
+    city = "",
+    cuisines = [], 
+    costForTwoMessage = ""
+  } = info;
 
   return (
     <>

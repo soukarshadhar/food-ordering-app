@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
-  font-family: system-ui;
+  font-family: "Roboto", "Arial", sans-serif;
+  margin: 0px;
 }
 #root {
   height: inherit;
@@ -39,6 +40,8 @@ html, body {
 }
 .restaurant-card {
   width: 250px;
+  text-decoration: none;
+  color: rgba(2, 6, 12, 0.75);
 }
 .restaurant-card:hover {
   transform: scale(0.98);
@@ -87,4 +90,26 @@ html, body {
 .my-10 {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.network-card {
+  text-align: center;
+  padding: 6px 0px;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+.offline {
+  background-color: #212121;
+}
+.online {
+  background-color: #2ba640;
+}
+.restaurant-link {
+  text-decoration: none;
 }
