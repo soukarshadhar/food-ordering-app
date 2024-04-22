@@ -93,16 +93,17 @@ html, body {
 }
 .network-card {
   text-align: center;
-  padding: 6px 0px;
+  padding: 10px;
   position: fixed;
-  width: 100%;
   bottom: 0px;
   z-index: 1;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: #fff;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .offline {
   background-color: #212121;
