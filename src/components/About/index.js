@@ -22,20 +22,17 @@ class About extends React.Component {
   render() {
     const { loading, user } = this.state;
     const { name = "", location = "", avatar_url = "", email } = user
-    return (
-      <>
-        <h1>About Us</h1>
-        {loading ? 
-          <h2>Loading...</h2> : 
-          <User
-            name={name}
-            location={location}
-            contact={email || '7978960062'}
-            avatar={avatar_url}
-          />
-        }
-      </>
-    );
+    return loading ? 
+      <h2>Loading...</h2> 
+      :
+      <div className="grid grid-cols-3 gap-5"> 
+        <User
+          name={name}
+          location={location}
+          contact={email || '7978960062'}
+          avatar={avatar_url}
+        />
+      </div>;
   }
 }
 

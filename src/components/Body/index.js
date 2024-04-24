@@ -28,14 +28,16 @@ const Body = () => {
     setFilteredList(filteredList);
   };
 
-  return filteredList.length === 0 ? <Shimmer /> :
-    <div className="body">
-      <div className="filter">
-        <input type="text" value={searchText} onChange={onChangeSearch} />
-        <button className="rating-btn" onClick={handleOnFilterClick}>Rating 4.0+</button>
+  return (
+    <>
+      <div className="flex flex-wrap justify-center gap-x-4">
+        <input className="border-black border-solid border-2 rounded-2xl" type="text" value={searchText} onChange={onChangeSearch} />
+        <button className="bg-slate-300 p-2 rounded-2xl" onClick={handleOnFilterClick}>
+          Rating 4.0+
+        </button>
       </div>
-      <div className="res-container">
-        {filteredList.map((restaurant) =>
+      <div className="grid grid-cols-4 gap-8 mt-5">
+        {filteredList.length === 0 ? <Shimmer /> : filteredList.map((restaurant) =>
           <RestaurantCard
             restaurant={restaurant} 
             key={restaurant.info.id} 
@@ -43,7 +45,8 @@ const Body = () => {
           />
         )}
       </div>
-    </div>;
+    </>
+  );
 }
 
 export default Body;

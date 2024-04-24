@@ -1,30 +1,22 @@
 import React from "react";
 
-const Card = () => {
+const Shimmer = () => {
   const items = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 8; i++) {
     items.push(
-      <div className="shimmer-card" key={i}>
+      <div key={i}>
         <div
-          className="shimmer-image gray"
+           className="h-[150px] object-cover w-full rounded-2xl bg-slate-200"
         />
-        <div className="space gray" />
-        <div className="space gray" />
-        <div className="space gray" />
-        <div className="space gray" />
-        <div className="space gray" />
+        <div className="h-[24px] mt-4 bg-slate-200" />
+        <div className="h-[24px] w-[120px] mt-2 bg-slate-200" />
+        <div className="h-[24px] w-[93px] mt-2 bg-slate-200" />
+        <div className="h-[24px] w-[80px] mt-2 bg-slate-200" />
       </div>
     );
   }
-  return items;
-}
 
-const Shimmer = () => {
-  return (
-    <div className="shimmer-container">
-      {Card()}
-    </div>
-  );
+  return items;
 }
 
 export default Shimmer;
