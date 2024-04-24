@@ -24,7 +24,9 @@ const NetworkConnectionBanner = () => {
   if (!showBanner) return null;
 
   return (
-    <div className={`network-card ${isOnline ? "online" : "offline"}`}>
+    <div
+      className={`fixed bottom-2.5 px-2.5 py-2 text-white left-1/2 -translate-x-2/4 rounded-lg shadow-lg ${isOnline ? "bg-green-700" : "bg-black"}`}
+    >
       {isOnline ? "✅ Back online" : "❌ No internet connection"}
     </div>
   );

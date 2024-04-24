@@ -15,7 +15,7 @@ const RestaurantCard = ({ restaurant, isOnline }) => {
   } = restaurant?.info || {};
 
   const cardLayout = (
-    <div className="hover:scale-95">
+    <div className="hover:scale-95 transition ease-in-out">
       <img
         className="h-[150px] object-cover w-full rounded-2xl"
         alt="res"
