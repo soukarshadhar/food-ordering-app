@@ -15,9 +15,9 @@ const RestaurantCard = ({ restaurant, isOnline }) => {
   } = restaurant?.info || {};
 
   const cardLayout = (
-    <div className="hover:scale-95 transition ease-in-out">
+    <div className="hover:scale-95 transition-all ease-in duration-75">
       <img
-        className="h-[150px] object-cover w-full rounded-2xl"
+        className="h-[150px] object-cover w-full rounded-2xl shadow-md"
         alt="res"
         src={`${CDN_URL}${cloudinaryImageId}`}
       />
