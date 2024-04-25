@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext, useContext } from "react";
 
-const OnlineStatusContext = createContext(null);
+const OnlineStatusContext = createContext(true);
 
 export const OnlineStatusProvider = ({ children }) => {
   const [online, setOnline] = useState(true);

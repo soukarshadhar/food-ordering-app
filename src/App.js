@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
-import Body from "./components/Body";
+import Home from "./components/Home";
 import Error from "./components/Error";
 import NetworkConnectionBanner from "./components/NetworkConnectionBanner";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -17,7 +17,7 @@ const AppLayout = () => {
       <div className="subpixel-antialiased">
         <NetworkConnectionBanner />
         <Header />
-        <div className="mx-7 mt-5">
+        <div className="mx-7 mt-28 mb-6">
           <Outlet />
         </div>
       </div>
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />
+        element: <Home />
       },
       {
         path: "/about",

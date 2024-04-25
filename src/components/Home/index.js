@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import RestaurantCard from "../RestaurantCard";
 import Shimmer from "../Shimmer";
-import useOnlineStatus from "../../hooks/useOnlineStatus";
 import useGetRestaurants from "../../hooks/useGetRestaurants";
 
-const Body = () => {
+const Home = () => {
   const [searchText, setSearchText] = useState('');
-  const isOnline = useOnlineStatus();
   const { list } = useGetRestaurants();
   const [filteredList, setFilteredList] = useState([]);
 
@@ -31,7 +29,7 @@ const Body = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center gap-x-4">
-        <input className="border-black border-solid border-2 rounded-2xl" type="text" value={searchText} onChange={onChangeSearch} />
+        <input className="border-black border-solid border-2 rounded-2xl p-1" type="text" value={searchText} onChange={onChangeSearch} />
         <button className="bg-slate-300 p-2 rounded-2xl" onClick={handleOnFilterClick}>
           Rating 4.0+
         </button>
@@ -41,7 +39,6 @@ const Body = () => {
           <RestaurantCard
             restaurant={restaurant} 
             key={restaurant.info.id} 
-            isOnline={isOnline} 
           />
         )}
       </div>
@@ -49,4 +46,4 @@ const Body = () => {
   );
 }
 
-export default Body;
+export default Home;

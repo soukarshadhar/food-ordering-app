@@ -4,9 +4,10 @@
   "description": "A web app for ordering food online",
   "scripts": {
     "test": "jest",
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "clean": "rm -rfv dist && rm -rfv .parcel-cache"
+    "start": "rm -rf dist && rm -rf .parcel-cache && parcel index.html",
+    "build": "rm -rf dist && rm -rf .parcel-cache && parcel build index.html",
+    "win:start": "rmdir /s dist && rmdir /s .parcel-cache && parcel index.html",
+    "win:build": "rmdir /s dist && rmdir /s .parcel-cache && parcel build index.html"
   },
   "repository": {
     "type": "git",
