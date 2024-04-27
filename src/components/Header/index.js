@@ -22,9 +22,6 @@ const Header = () => {
           {isOnline ? <Link to="/about">About Us</Link> : 'About Us'}
         </li>
         <li className="ml-4 content-center">
-          {isOnline ? <Link to="/contact">Contact Us</Link> : 'Contact Us'}
-        </li>
-        <li className="ml-4 content-center">
           <Link className="relative" to="/checkout">
             <span className="absolute -right-1.5 text-white bg-orange-700 font-semibold w-5 text-sm -top-2.5 rounded-full text-center">
               {cartItems.length}

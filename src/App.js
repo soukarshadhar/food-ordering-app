@@ -12,7 +12,6 @@ import store from "./store/appStore";
 
 const Restaurant = lazy(() => import("./components/Restaurant"));
 const About = lazy(() => import("./components/About"));
-const Contact = lazy(() => import("./components/Contact"));
 
 const AppLayout = () => {
   return (
@@ -43,10 +42,6 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <Suspense fallback={<h1>Loading...</h1>}><About /></Suspense>
-      },
-      {
-        path: "/contact",
-        element: <Suspense fallback={<h1>Loading...</h1>}><Contact /></Suspense>
       },
       {
         path: "/restaurants/:id",
