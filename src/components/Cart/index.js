@@ -26,13 +26,14 @@ const Cart = () => {
           </div>
           {cartItems.map((i) => {
             const { id, name, defaultPrice, price, imageId } = i?.card?.info || {};
+            const itemPrice = (defaultPrice || price)/100;
             return (
               <CartItem
                 key={id}
                 imageUrl={`${DISH_CDN_URL}${imageId}`} 
                 name={name}
-                price={(defaultPrice || price)/100}
-                onDeleteItem={() => dispatch(deleteCartItem(i))}
+                price={itemPrice}
+                onDeleteItem={() => dispatch(deleteCartItem({ id, itemPrice }))}
               />
             );
             })

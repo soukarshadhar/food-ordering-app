@@ -6,11 +6,11 @@ const MenuDishCard = ({ name, price, rating, description, imageUrl, onAddDish = 
     <div className="flex justify-between">
       <div className="pr-6">
         <div className="font-bold text-lg">{name}</div>
-        <div>₹{price}</div>
+        <div className="mb-2.5">₹{price}</div>
         {rating && (
-          <div className="mt-2.5">
-            <img className="h-5 inline mr-1" src={StarIcon} alt="star" />
-            <span className="align-middle">{rating}</span>
+          <div>
+            <img className="h-5 inline mr-1 align-top" src={StarIcon} alt="star" />
+            <span>{rating}</span>
           </div>)
         }
         {description && <p className="font-extralight mb-1">{description}</p>}

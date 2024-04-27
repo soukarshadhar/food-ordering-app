@@ -25,7 +25,7 @@ const Restaurant = () => {
           <MenuDishCard
             key={id}
             name={name}
-            price={(defaultPrice || price)/100}
+            price={((defaultPrice || price)/100).toFixed(2)}
             description={description}
             imageUrl={imageId ? `${DISH_CDN_URL}${imageId}` : ''}
             rating={ratings.aggregatedRating.rating}
@@ -60,7 +60,7 @@ const Restaurant = () => {
           <div className="flex">
             <img className="h-5 mr-1" src={starIcon} alt="star" />
             <span className="align-middle">{avgRating}</span>
-            <span className="mx-1">|</span>
+            <span className="mx-1">•</span>
             <span className="align-middle">{totalRatingsString}</span>
           </div>
         </div>

@@ -19,14 +19,9 @@ const cartSlice = createSlice({
       }
     },
     deleteCartItem: (state, action) => {
-      const newItems = [...state.items];
-      const { id = 0, defaultPrice = 0, price = 0 } = action.payload.card?.info || {};
-      const index = newItems.findIndex((item) => item.card.info.id === id);
-      newItems.splice(index, 1);
-      return {
-        items: newItems,
-        cartTotal: state.cartTotal - parseFloat(((defaultPrice || price)/100).toFixed(2))
-      }
+      const index = state.items.findIndex((item) => item.card.info.id ===  action.payload.id);
+      state.items.splice(index, 1);
+      state.cartTotal = state.cartTotal - parseFloat(action.payload.itemPrice.toFixed(2));
     },
     clearCart: () => {
       return {
