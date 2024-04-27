@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { chevronUpIcon, chevronDownIcon } from "../../utils/constants";
+import ChevronUpIcon from "../../../assets/chevron-up.svg";
+import ChevronDownIcon from "../../../assets/chevron-down.svg";
 
 export const Accordion = ({ title = "", content = "", className = "", onAccordionClick = () => {}, canExpand = false }) => {
   return (
@@ -9,7 +10,7 @@ export const Accordion = ({ title = "", content = "", className = "", onAccordio
         onClick={onAccordionClick}
       >
         <span className="font-bold text-lg">{title}</span>
-        {canExpand ? chevronUpIcon : chevronDownIcon}
+        <img className="h-7" src={canExpand ? ChevronUpIcon : ChevronDownIcon} alt="chevron-up" />
       </div>
       {canExpand ? 
         <div className="p-5">

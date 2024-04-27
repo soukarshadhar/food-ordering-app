@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
 import useGetRestaurantById from "../../hooks/useGetRestaurantById";
-import { CDN_URL, DISH_CDN_URL, starIcon } from "../../utils/constants";
+import { CDN_URL, DISH_CDN_URL } from "../../utils/constants";
 import { Accordion } from "../Accordion";
 import MenuDishCard from "../MenuDishCard";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../../store/cart";
+import starIcon from "../../../assets/star.svg";
 
 const Restaurant = () => {
   const { id } = useParams();
   const [accordionIndex, setAccordionIndex] = useState(0);
   const { menu, info, loading } = useGetRestaurantById(id);
+  const dispatch = useDispatch();
 
   if (loading) return <div>Loading...</div>;
 
@@ -17,7 +21,7 @@ const Restaurant = () => {
       const { id, name, defaultPrice, price, imageId, description, ratings } = dish?.card?.info || {};
       return (
         <>
-          {index !== 0 && <div className="border-t border-slate-300 my-6" />}
+          {index !== 0 && <div className="border-t border-slate-300 my-10" />}
           <MenuDishCard
             key={id}
             name={name}
@@ -25,6 +29,7 @@ const Restaurant = () => {
             description={description}
             imageUrl={imageId ? `${DISH_CDN_URL}${imageId}` : ''}
             rating={ratings.aggregatedRating.rating}
+            onAddDish={() => dispatch(addCartItem(dish))}
           />
         </>
       );
@@ -52,8 +57,8 @@ const Restaurant = () => {
           <div className="font-bold mb-2">{locality}, {areaName}, {city}</div>
           <div>{cuisines.join(', ')}</div>
           <div>{costForTwoMessage}</div>
-          <div>
-            {starIcon}
+          <div className="flex">
+            <img className="h-5 mr-1" src={starIcon} alt="star" />
             <span className="align-middle">{avgRating}</span>
             <span className="mx-1">|</span>
             <span className="align-middle">{totalRatingsString}</span>

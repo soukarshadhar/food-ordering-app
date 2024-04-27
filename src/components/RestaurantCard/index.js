@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
-import { CDN_URL, starIcon } from "../../utils/constants";
+import { CDN_URL } from "../../utils/constants";
+import starIcon from "../../../assets/star.svg";
 
 const RestaurantCard = ({ restaurant }) => {
   const isOnline = useOnlineStatus();
@@ -25,8 +26,8 @@ const RestaurantCard = ({ restaurant }) => {
         src={`${CDN_URL}${cloudinaryImageId}`}
       />
       <div className="mt-4 text-lg font-bold">{name}</div>
-      <div className="font-bold text-base">
-        {starIcon}
+      <div className="font-bold text-base flex">
+        <img className="h-5 mr-1" src={starIcon} alt="star" />
         <span className="align-middle mr-1">{avgRating}</span>
         <span className="align-middle mr-1">•</span>
         <span className="align-middle">{sla.slaString}</span>
