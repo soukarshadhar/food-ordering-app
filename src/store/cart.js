@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
-  cartTotal: 0
-}
+  cartTotal: 0,
+};
 
 const cartSlice = createSlice({
-  name: 'cartSlice',
+  name: "cartSlice",
   initialState,
   reducers: {
     addCartItem: (state, action) => {
@@ -15,21 +15,26 @@ const cartSlice = createSlice({
       newItems.push(action.payload);
       return {
         items: newItems,
-        cartTotal: state.cartTotal + parseFloat(((defaultPrice || price)/100).toFixed(2))
-      }
+        cartTotal:
+          state.cartTotal +
+          parseFloat(((defaultPrice || price) / 100).toFixed(2)),
+      };
     },
     deleteCartItem: (state, action) => {
-      const index = state.items.findIndex((item) => item.card.info.id ===  action.payload.id);
+      const index = state.items.findIndex(
+        (item) => item.card.info.id === action.payload.id
+      );
       state.items.splice(index, 1);
-      state.cartTotal = state.cartTotal - parseFloat(action.payload.itemPrice.toFixed(2));
+      state.cartTotal =
+        state.cartTotal - parseFloat(action.payload.itemPrice.toFixed(2));
     },
     clearCart: () => {
       return {
         items: [],
-        cartTotal: 0
-      }
-    }
-  }
+        cartTotal: 0,
+      };
+    },
+  },
 });
 
 export const { addCartItem, deleteCartItem, clearCart } = cartSlice.actions;

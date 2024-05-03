@@ -1,7 +1,14 @@
 import React from "react";
 import StarIcon from "../../../assets/star.svg";
 
-const MenuDishCard = ({ name, price, rating, description, imageUrl, onAddDish = () => {} }) => {
+const MenuDishCard = ({
+  name,
+  price,
+  rating,
+  description,
+  imageUrl,
+  onAddDish = () => {},
+}) => {
   return (
     <div className="flex justify-between">
       <div className="pr-6">
@@ -9,26 +16,41 @@ const MenuDishCard = ({ name, price, rating, description, imageUrl, onAddDish = 
         <div className="mb-2.5">₹{price}</div>
         {rating && (
           <div>
-            <img className="h-5 inline mr-1 align-top" src={StarIcon} alt="star" />
+            <img
+              className="h-5 inline mr-1 align-top"
+              src={StarIcon}
+              alt="star"
+            />
             <span>{rating}</span>
-          </div>)
-        }
+          </div>
+        )}
         {description && <p className="font-extralight mb-1">{description}</p>}
       </div>
       {imageUrl && (
         <div className="min-w-[156px] min-h-[172px] relative">
-          <img className="rounded-xl shadow-md object-cover aspect-square w-[156px]" src={imageUrl} alt="dish" />
-          <div className="uppercase absolute w-28 h-8 cursor-pointer bg-white text-center shadow-md text-orange-600 font-bold rounded-lg left-1/2 -translate-x-1/2 top-[140px] leading-8" onClick={onAddDish}>
+          <img
+            className="rounded-xl shadow-md object-cover aspect-square w-[156px]"
+            src={imageUrl}
+            alt="dish"
+          />
+          <div
+            data-testid="add-dish"
+            className="uppercase absolute w-28 h-8 cursor-pointer bg-white text-center shadow-md text-orange-600 font-bold rounded-lg left-1/2 -translate-x-1/2 top-[140px] leading-8"
+            onClick={onAddDish}
+          >
             Add
           </div>
-        </div>)
-      }
+        </div>
+      )}
       {!imageUrl && (
-          <div className="uppercase w-28 h-8 ml-12 mr-6 cursor-pointer bg-white shadow-md text-orange-600 text-center font-bold leading-8 rounded-lg" onClick={onAddDish}>>
-            Add
-          </div>
-        )
-      }
+        <div
+          data-testid="add-dish"
+          className="uppercase w-28 h-8 ml-12 mr-6 cursor-pointer bg-white shadow-md text-orange-600 text-center font-bold leading-8 rounded-lg"
+          onClick={onAddDish}
+        >
+          Add
+        </div>
+      )}
     </div>
   );
 };

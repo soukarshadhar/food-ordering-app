@@ -6,8 +6,8 @@ export const OnlineStatusProvider = ({ children }) => {
   const [online, setOnline] = useState(true);
 
   useEffect(() => {
-    window.addEventListener('offline', () => setOnline(false));
-    window.addEventListener('online', () => setOnline(true));
+    window.addEventListener("offline", () => setOnline(false));
+    window.addEventListener("online", () => setOnline(true));
   }, []);
 
   return (
@@ -15,7 +15,7 @@ export const OnlineStatusProvider = ({ children }) => {
       {children}
     </OnlineStatusContext.Provider>
   );
-}
+};
 
 const useOnlineStatus = () => {
   const value = useContext(OnlineStatusContext);

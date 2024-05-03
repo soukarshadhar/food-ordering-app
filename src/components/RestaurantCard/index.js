@@ -15,11 +15,14 @@ const RestaurantCard = ({ restaurant }) => {
     costForTwo = "",
     sla,
     id,
-    areaName 
+    areaName,
   } = restaurant?.info || {};
 
   const cardLayout = (
-    <div className="hover:scale-95 transition-all ease-in duration-75">
+    <div
+      data-testid="restaurant-card"
+      className="hover:scale-95 transition-all ease-in duration-75"
+    >
       <img
         className="h-[150px] object-cover w-full rounded-2xl shadow-md"
         alt="res"
@@ -32,18 +35,17 @@ const RestaurantCard = ({ restaurant }) => {
         <span className="align-middle mr-1">•</span>
         <span className="align-middle">{sla.slaString}</span>
       </div>
-      <div className="font-light">{cuisines.join(', ')}</div>
+      <div className="font-light">{cuisines.join(", ")}</div>
       <div className="mt-px font-light">{costForTwo}</div>
       <div className="mt-px font-light">{areaName}</div>
-      
     </div>
   );
-  
-  return (isOnline ?
-    <Link to={`/restaurants/${id}`}>
-     {cardLayout}
-    </Link> : cardLayout
-  );
-}
 
-export default RestaurantCard
+  return isOnline ? (
+    <Link to={`/restaurants/${id}`}>{cardLayout}</Link>
+  ) : (
+    cardLayout
+  );
+};
+
+export default RestaurantCard;

@@ -12,14 +12,16 @@ const Header = () => {
 
   return (
     <div className="flex justify-between content-center shadow-md fixed top-0 w-full z-10 bg-white">
-      {
-        isOnline ? <Link className="ml-7 my-2.5" to="/">
+      {isOnline ? (
+        <Link className="ml-7 my-2.5" to="/">
           <img className="h-[50px]" src={Logo} alt="logo" />
-        </Link> : <img className="h-[50px] ml-7 my-2.5" src={Logo} alt="logo" />
-      }
+        </Link>
+      ) : (
+        <img className="h-[50px] ml-7 my-2.5" src={Logo} alt="logo" />
+      )}
       <ul className="flex mr-7">
         <li className="content-center">
-          {isOnline ? <Link to="/about">About Us</Link> : 'About Us'}
+          {isOnline ? <Link to="/about">About Us</Link> : "About Us"}
         </li>
         <li className="ml-4 content-center">
           <Link className="relative" to="/checkout">

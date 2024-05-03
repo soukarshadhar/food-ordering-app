@@ -4,8 +4,8 @@ import Shimmer from "../Shimmer";
 import useGetRestaurants from "../../hooks/useGetRestaurants";
 
 const Home = () => {
-  const [searchText, setSearchText] = useState('');
-  const { list } = useGetRestaurants();
+  const [searchText, setSearchText] = useState("");
+  const { list, loading, error } = useGetRestaurants();
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
@@ -29,21 +29,30 @@ const Home = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center gap-x-4">
-        <input className="border-black border-solid border-2 rounded-2xl p-1" type="text" value={searchText} onChange={onChangeSearch} />
-        <button className="bg-slate-300 p-2 rounded-2xl" onClick={handleOnFilterClick}>
+        <input
+          className="border-black border-solid border-2 rounded-2xl p-1"
+          type="text"
+          value={searchText}
+          onChange={onChangeSearch}
+        />
+        <button
+          className="bg-slate-300 p-2 rounded-2xl"
+          onClick={handleOnFilterClick}
+        >
           Rating 4.0+
         </button>
       </div>
       <div className="grid grid-cols-4 gap-8 mt-5">
-        {filteredList.length === 0 ? <Shimmer /> : filteredList.map((restaurant) =>
-          <RestaurantCard
-            restaurant={restaurant} 
-            key={restaurant.info.id} 
-          />
+        {loading ? (
+          <Shimmer />
+        ) : (
+          filteredList.map((restaurant) => (
+            <RestaurantCard restaurant={restaurant} key={restaurant.info.id} />
+          ))
         )}
       </div>
     </>
   );
-}
+};
 
 export default Home;
