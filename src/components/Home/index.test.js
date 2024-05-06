@@ -1,4 +1,9 @@
-import { render, screen, act, fireEvent } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import Home from "./index";
 import restaurantsData from "../../mocks/restaurants.json";
 import { BrowserRouter } from "react-router-dom";
@@ -13,12 +18,14 @@ global.fetch = jest.fn(() => {
 // Integration testing
 describe("Testing Home Component", () => {
   it("Should list 2 cards when searched for pizza", async () => {
-    await act(() =>
-      render(
-        <BrowserRouter>
-          <Home />
-        </BrowserRouter>
-      )
+    render(
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    );
+
+    await waitForElementToBeRemoved(() =>
+      screen.getByTestId("shimmer-container")
     );
 
     const searchBox = screen.getByRole("textbox");
@@ -32,12 +39,14 @@ describe("Testing Home Component", () => {
   });
 
   it("Should filter restaurant with ratings > 4.0", async () => {
-    await act(() =>
-      render(
-        <BrowserRouter>
-          <Home />
-        </BrowserRouter>
-      )
+    render(
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    );
+
+    await waitForElementToBeRemoved(() =>
+      screen.getByTestId("shimmer-container")
     );
 
     const itemsBeforeSearch = screen.getAllByTestId("restaurant-card");

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ChevronUpIcon from "../../../assets/chevron-up.svg";
 import ChevronDownIcon from "../../../assets/chevron-down.svg";
 
-export const Accordion = ({
+const Accordion = ({
   title = "",
-  content = "",
+  renderContent = () => {},
   className = "",
   onAccordionClick = () => {},
   canExpand = false,
@@ -29,32 +29,9 @@ export const Accordion = ({
           alt="arrow-icon"
         />
       </div>
-      {canExpand && <div className="p-5">{content}</div>}
+      {canExpand && <div className="p-5">{renderContent()}</div>}
     </div>
   );
 };
 
-const AccordionWrapper = ({
-  title,
-  content,
-  className,
-  isInitialOpen = false,
-}) => {
-  const [isOpen, setIsOpen] = useState(isInitialOpen);
-
-  const handleOnAccordionClick = () => {
-    setIsOpen((prevState) => !prevState);
-  };
-
-  return (
-    <Accordion
-      title={title}
-      content={content}
-      className={className}
-      onAccordionClick={handleOnAccordionClick}
-      canExpand={isOpen}
-    />
-  );
-};
-
-export default AccordionWrapper;
+export default Accordion;

@@ -14,7 +14,14 @@ const Shimmer = () => {
     );
   }
 
-  return items;
+  return (
+    <div
+      className="grid grid-cols-4 gap-8 mt-5"
+      data-testid="shimmer-container"
+    >
+      {items}
+    </div>
+  );
 };
 
 export default Shimmer;

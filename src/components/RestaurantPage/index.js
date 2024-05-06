@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import useGetRestaurantById from "../../hooks/useGetRestaurantById";
-import { CDN_URL, DISH_CDN_URL } from "../../utils/constants";
-import { Accordion } from "../Accordion";
+import Accordion from "../Accordion";
 import MenuDishCard from "../MenuDishCard";
+import starIcon from "../../../assets/star.svg";
+import { useParams } from "react-router-dom";
+import { CDN_URL, DISH_CDN_URL } from "../../utils/constants";
 import { useDispatch } from "react-redux";
 import { addCartItem } from "../../store/cart";
-import starIcon from "../../../assets/star.svg";
 
 const RestaurantPage = () => {
   const { id } = useParams();
@@ -22,7 +22,12 @@ const RestaurantPage = () => {
         dish?.card?.info || {};
       return (
         <>
-          {index !== 0 && <div className="border-t border-slate-300 my-10" />}
+          {index !== 0 && (
+            <div
+              key={`divider-${id}`}
+              className="border-t border-slate-300 my-10"
+            />
+          )}
           <MenuDishCard
             key={id}
             name={name}
@@ -35,6 +40,14 @@ const RestaurantPage = () => {
         </>
       );
     });
+  };
+
+  const handleOnAccordionClick = (index) => {
+    if (accordionIndex !== index) {
+      setAccordionIndex(index);
+    } else {
+      setAccordionIndex(-1);
+    }
   };
 
   const {
@@ -74,22 +87,15 @@ const RestaurantPage = () => {
       <div className="max-w-3xl mx-auto">
         {menu.map((item, index) => {
           const { title, itemCards } = item?.card?.card || {};
-          const content = renderDishes(itemCards);
 
           return (
             <Accordion
-              key={index}
+              key={title}
               title={`${title} (${itemCards.length})`}
-              content={content}
+              renderContent={() => renderDishes(itemCards)}
               className={index !== 0 ? "mt-5" : ""}
               canExpand={accordionIndex === index}
-              onAccordionClick={() => {
-                if (accordionIndex !== index) {
-                  setAccordionIndex(index);
-                } else {
-                  setAccordionIndex(-1);
-                }
-              }}
+              onAccordionClick={() => handleOnAccordionClick(index)}
             />
           );
         })}

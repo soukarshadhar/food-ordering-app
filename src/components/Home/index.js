@@ -5,7 +5,7 @@ import useGetRestaurants from "../../hooks/useGetRestaurants";
 
 const Home = () => {
   const [searchText, setSearchText] = useState("");
-  const { list, loading, error } = useGetRestaurants();
+  const { list, loading } = useGetRestaurants();
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
@@ -42,15 +42,15 @@ const Home = () => {
           Rating 4.0+
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-8 mt-5">
-        {loading ? (
-          <Shimmer />
-        ) : (
-          filteredList.map((restaurant) => (
+      {loading ? (
+        <Shimmer />
+      ) : (
+        <div className="grid grid-cols-4 gap-8 mt-5">
+          {filteredList.map((restaurant) => (
             <RestaurantCard restaurant={restaurant} key={restaurant.info.id} />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

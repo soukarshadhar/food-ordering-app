@@ -1,13 +1,20 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import {
+  waitForElementToBeRemoved,
+  fireEvent,
+  render,
+  screen,
+  act,
+} from "@testing-library/react";
 import restaurantData from "../../mocks/restaurantById.json";
 import RestaurantPage from "./index";
 import Header from "../Header";
 import Cart from "../Cart";
-import { Provider } from "react-redux";
 import store from "../../store/appStore";
+import { Provider } from "react-redux";
 import { clearCart } from "../../store/cart";
 import { BrowserRouter } from "react-router-dom";
 
+// Fake fetch call
 global.fetch = jest.fn(() => {
   return Promise.resolve({
     json: () => Promise.resolve(restaurantData),
@@ -21,29 +28,30 @@ describe("Testing Restaurant Page Component", () => {
   });
 
   it("Should render 15 accordions", async () => {
-    await act(() =>
-      render(
-        <Provider store={store}>
-          <RestaurantPage />
-        </Provider>
-      )
+    render(
+      <Provider store={store}>
+        <RestaurantPage />
+      </Provider>
     );
+
+    await waitForElementToBeRemoved(() => screen.getByText("Loading..."));
 
     const accordions = screen.getAllByTestId("accordion");
     expect(accordions.length).toBe(15);
   });
 
   it("Should add items to cart and update cart items at header", async () => {
-    await act(() =>
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <Header />
-            <RestaurantPage />
-          </Provider>
-        </BrowserRouter>
-      )
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Header />
+          <RestaurantPage />
+        </Provider>
+      </BrowserRouter>
     );
+
+    await waitForElementToBeRemoved(() => screen.getByText("Loading..."));
+
     const menuDishes = screen.getAllByTestId("add-dish");
     menuDishes.forEach((item) => {
       fireEvent.click(item);
@@ -53,16 +61,16 @@ describe("Testing Restaurant Page Component", () => {
   });
 
   it("Should add items to cart and update carts page", async () => {
-    await act(() =>
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <Cart />
-            <RestaurantPage />
-          </Provider>
-        </BrowserRouter>
-      )
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Cart />
+          <RestaurantPage />
+        </Provider>
+      </BrowserRouter>
     );
+
+    await waitForElementToBeRemoved(() => screen.getByText("Loading..."));
 
     const menuDishes = screen.getAllByTestId("add-dish");
     menuDishes.forEach((item) => {
