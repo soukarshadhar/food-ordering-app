@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import store from "../../store/appStore";
 import { BrowserRouter } from "react-router-dom";
 
-describe('Testing Header component', () => {
-  it('Should render a button', () => {
+describe("Header component", () => {
+  it("Should render a button", () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -14,11 +14,11 @@ describe('Testing Header component', () => {
       </BrowserRouter>
     );
 
-    const button = screen.getByRole('button');
+    const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
   });
 
-  it('Should render Cart with 0 Items', () => {
+  it("Should render Cart with 0 Items", () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -27,11 +27,11 @@ describe('Testing Header component', () => {
       </BrowserRouter>
     );
 
-    const text = screen.getByText('0');
+    const text = screen.getByText("0");
     expect(text).toBeInTheDocument();
   });
 
-  it('Should render Logout Button after clicking Login', () => {
+  it("Should render Logout Button after clicking Login", () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -40,9 +40,9 @@ describe('Testing Header component', () => {
       </BrowserRouter>
     );
 
-    const button = screen.getByRole('button');
+    const button = screen.getByRole("button");
     fireEvent.click(button);
-    const logoutButton = screen.getByText('Logout');
+    const logoutButton = screen.getByText("Logout");
     expect(logoutButton).toBeInTheDocument();
   });
 });

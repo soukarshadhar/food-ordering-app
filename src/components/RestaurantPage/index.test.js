@@ -22,7 +22,7 @@ global.fetch = jest.fn(() => {
 });
 
 // Integration test
-describe("Testing Restaurant Page Component", () => {
+describe("Restaurant Page Component", () => {
   afterEach(() => {
     act(() => store.dispatch(clearCart()));
   });

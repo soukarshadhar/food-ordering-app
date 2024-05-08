@@ -16,7 +16,7 @@ global.fetch = jest.fn(() => {
 });
 
 // Integration testing
-describe("Testing Home Component", () => {
+describe("Home Component", () => {
   it("Should list 2 cards when searched for pizza", async () => {
     render(
       <BrowserRouter>

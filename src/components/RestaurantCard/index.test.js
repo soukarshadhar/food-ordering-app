@@ -3,7 +3,7 @@ import RestaurantCard from "./index";
 import restaurantsData from "../../mocks/restaurants.json";
 import { BrowserRouter } from "react-router-dom";
 
-describe("Testing Restaurant Card component", () => {
+describe("Restaurant Card component", () => {
   it("Should render restaurant name = UBQ by Barbeque Nation", () => {
     const restaurants =
       restaurantsData.data.cards[4].card.card.gridElements.infoWithStyle
